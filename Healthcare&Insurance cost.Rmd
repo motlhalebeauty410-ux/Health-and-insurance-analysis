@@ -1,0 +1,62 @@
+# Load libraries
+library(tidyverse)
+
+# Step 1: Import dataset
+df <- read_csv("insurance.csv")
+
+# Step 2: Explore structure
+glimpse(df)
+summary(df)
+
+# Step 3: Check for missing values
+colSums(is.na(df))
+
+# Step 4: Create new categorical columns
+df <- df %>%
+  mutate(
+    age_group = case_when(
+      age < 30 ~ "Young",
+      age < 50 ~ "Middle-aged",
+      TRUE ~ "Senior"
+    ),
+    bmi_category = case_when(
+      bmi < 18.5 ~ "Underweight",
+      bmi < 25 ~ "Normal",
+      bmi < 30 ~ "Overweight",
+      TRUE ~ "Obese"
+    )
+  )
+
+# Step 5: Save cleaned dataset
+write_csv(df, "insurance_clean.csv")
+
+cat("✅ Cleaned dataset saved as insurance_clean.csv")
+
+
+#Exploratory Data Analysis
+# Average charges by smoking status
+df %>%
+  group_by(smoker) %>%
+  summarise(avg_charge = mean(charges)) %>%
+  ggplot(aes(x = smoker, y = avg_charge, fill = smoker)) +
+  geom_col() +
+  labs(title = "Average Charges by Smoking Status", y = "Average Charges") +
+  theme_minimal()
+
+# Boxplot of charges by region
+ggplot(df, aes(x = region, y = charges, fill = region)) +
+  geom_boxplot() +
+  labs(title = "Distribution of Charges by Region", y = "Charges") +
+  theme_minimal()
+
+# Scatter plot: BMI vs Charges
+ggplot(df, aes(x = bmi, y = charges, color = smoker)) +
+  geom_point(alpha = 0.7) +
+  labs(title = "BMI vs Charges (Colored by Smoker)") +
+  theme_minimal()
+
+# Correlation heatmap
+library(ggcorrplot)
+num_df <- df %>% select(age, bmi, children, charges)
+cor_matrix <- cor(num_df)
+ggcorrplot(cor_matrix, lab = TRUE, title = "Correlation Heatmap")
