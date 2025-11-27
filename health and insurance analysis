@@ -1,0 +1,76 @@
+# 🏥 Health Insurance Analytics & Dashboard Project
+
+This project explores a Health Insurance dataset using **R** for data cleaning & analysis and **Power BI** for dashboard visualizations.  
+It demonstrates real-world data analytics skills for an entry-level data science portfolio.
+
+---
+
+## 📁 Project Structure
+
+
+---
+
+## 🧼 1. Data Cleaning (R)
+
+The dataset was cleaned and prepared in **R**.  
+Key cleaning steps include:
+
+- Removing missing values  
+- Creating new variables:
+  - **age_group**
+  - **bmi_category**
+- Renaming columns for consistency  
+- Saving final dataset as **insurance_clean.csv**
+
+---
+
+## 🔍 2. Exploratory Data Analysis (EDA in R)
+
+The R script generates important insights:
+
+### ✔ Average charges by smoker vs non-smoker  
+### ✔ Scatterplot: BMI vs Charges  
+### ✔ Boxplot: Charges by Region  
+### ✔ Correlation heatmap for numerical variables  
+
+These visualizations help identify:
+
+- the impact of smoking on insurance charges  
+- BMI patterns  
+- regional cost variations  
+- relationships between age, BMI, charges, and children  
+
+Screenshots of R outputs are stored in the **screenshots** folder.
+
+---
+
+## 📊 3. Power BI Dashboard
+
+The dashboard includes:
+
+- **Risk Score by BMI Category**  
+- **BMI by Sex**  
+- **Smoker Distribution**  
+- **Age Group vs BMI**  
+- **Smoker Count by Region**  
+- **Average Charges Visuals**  
+- **Filters (Age Group, Region, Smoking Status)**  
+
+These visuals allow users to interactively explore insurance cost drivers.
+
+Screenshots are included under **/screenshots**.
+
+---
+
+## 🧪 4. How to Reproduce the Project
+
+### ▶ 1. Run the R script
+
+Install libraries:
+
+```r
+library(tidyverse)
+library(ggcorrplot)
+
+Data Science Student  
+GitHub Portfolio Project
